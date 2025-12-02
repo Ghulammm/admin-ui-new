@@ -1,10 +1,28 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App.jsx' // Pastikan ini import App
-import './index.css'
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import SignInPage from "./pages/signin";
+import SignUpPage from "./pages/signup";
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+// Membuat router (pengatur jalan)
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <div>Hello World</div>, // Halaman default (bisa diubah nanti)
+  },
+  {
+    path: "/login",
+    element: <SignInPage />,
+  },
+  {
+    path: "/signup",
+    element: <SignUpPage />,
+  },
+]);
+
+ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <App /> {/* Ganti <Exercise /> menjadi <App /> */}
-  </React.StrictMode>,
-)
+    <RouterProvider router={router} />
+  </React.StrictMode>
+);

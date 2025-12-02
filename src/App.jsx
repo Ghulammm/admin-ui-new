@@ -1,10 +1,10 @@
 import React from "react";
-import SignUpPage from "./pages/signup";
+import SignInPage from "./pages/signin"; // <-- Ubah ke signin untuk mengecek
 
 function App() {
   return (
     <div className="flex justify-center min-h-screen items-center">
-      <SignUpPage />
+      <SignInPage /> {/* <-- Panggil SignInPage */}
     </div>
   );
 }
