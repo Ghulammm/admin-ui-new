@@ -7,6 +7,7 @@ export default {
   theme: {
     extend: {
       colors: {
+
         "Special-Red2": "#b83016",
 
         "primary": "#299D91",
