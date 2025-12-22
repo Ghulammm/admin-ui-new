@@ -1,51 +1,36 @@
 import React from "react";
 import MainLayout from "../components/Layouts/MainLayout";
-import Card from "../components/Elements/Card";
+import CardBalance from "../components/Fragments/CardBalance";
+import CardGoal from "../components/Fragments/CardGoal";
+import CardUpcomingBill from "../components/Fragments/CardUpcomingBill";
+import CardRecentTransaction from "../components/Fragments/CardRecentTransaction";
+import CardStatistic from "../components/Fragments/CardStatistic";
+import CardExpenseBreakdown from "../components/Fragments/CardExpenseBreakdown";
 
 function DashboardPage() {
   return (
     <MainLayout>
-      <div className="grid sm:grid-cols-12 sm:grid-rows-3 gap-6 h-full">
+      <div className="grid sm:grid-cols-12 gap-6 h-full font-poppins">
         {/* Baris Atas */}
         <div className="sm:col-span-4">
-          <Card
-            title="Total Balance"
-            desc="Lorem ipsum dolor sit amet consectetur, adipisicing elit. In deleniti excepturi accusamus eveniet, quasi, expedita aspernatur minima dolor placeat voluptates laborum quis quos. Illo, quas sunt nobis soluta voluptas asperiores!"
-          />
+          <CardBalance />
         </div>
         <div className="sm:col-span-4">
-          <Card
-            title="Goals"
-            desc="Lorem ipsum dolor sit amet consectetur, adipisicing elit. In deleniti excepturi accusamus eveniet, quasi, expedita aspernatur minima dolor placeat voluptates laborum quis quos. Illo, quas sunt nobis soluta voluptas asperiores!"
-          />
+          <CardGoal />
         </div>
         <div className="sm:col-span-4">
-          <Card
-            title="Upcoming Bill"
-            link="/bill"
-            desc="Lorem ipsum dolor sit amet consectetur, adipisicing elit. In deleniti excepturi accusamus eveniet, quasi, expedita aspernatur minima dolor placeat voluptates laborum quis quos. Illo, quas sunt nobis soluta voluptas asperiores!"
-          />
+          <CardUpcomingBill />
         </div>
 
         {/* Baris Tengah & Bawah */}
         <div className="sm:col-span-4 sm:row-span-2">
-          <Card
-            title="Recent Transaction"
-            link="/transaction"
-            desc="Lorem ipsum dolor sit amet consectetur, adipisicing elit. In deleniti excepturi accusamus eveniet, quasi, expedita aspernatur minima dolor placeat voluptates laborum quis quos. Illo, quas sunt nobis soluta voluptas asperiores!"
-          />
+          <CardRecentTransaction />
         </div>
         <div className="sm:col-span-8">
-          <Card
-            title="Statistics"
-            desc="Lorem ipsum dolor sit amet consectetur, adipisicing elit. In deleniti excepturi accusamus eveniet, quasi, expedita aspernatur minima dolor placeat voluptates laborum quis quos. Illo, quas sunt nobis soluta voluptas asperiores!"
-          />
+          <CardStatistic />
         </div>
         <div className="sm:col-span-8">
-          <Card
-            title="Expenses Breakdown"
-            desc="Lorem ipsum dolor sit amet consectetur, adipisicing elit. In deleniti excepturi accusamus eveniet, quasi, expedita aspernatur minima dolor placeat voluptates laborum quis quos. Illo, quas sunt nobis soluta voluptas asperiores!"
-          />
+          <CardExpenseBreakdown />
         </div>
       </div>
     </MainLayout>
