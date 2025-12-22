@@ -1,5 +1,16 @@
 import React from "react";
 import MainLayout from "../components/Layouts/MainLayout";
+// 1. Import Data dari src/data.jsx
+import { 
+  balances, 
+  goals, 
+  expensesStatistics, 
+  bills, 
+  transactions, 
+  expensesBreakdowns 
+} from "../data";
+
+// 2. Import Semua Fragment
 import CardBalance from "../components/Fragments/CardBalance";
 import CardGoal from "../components/Fragments/CardGoal";
 import CardUpcomingBill from "../components/Fragments/CardUpcomingBill";
@@ -9,28 +20,32 @@ import CardExpenseBreakdown from "../components/Fragments/CardExpenseBreakdown";
 
 function DashboardPage() {
   return (
-    <MainLayout>
+    // Tambahkan prop title agar Header berubah menjadi "Overview"
+    <MainLayout title="Overview">
       <div className="grid sm:grid-cols-12 gap-6 h-full font-poppins">
-        {/* Baris Atas */}
+        {/* --- BARIS ATAS --- */}
         <div className="sm:col-span-4">
-          <CardBalance />
+          {/* WAJIB: Kirim data balances agar muncul kartu hijau & Mastercard */}
+          <CardBalance data={balances} />
         </div>
         <div className="sm:col-span-4">
-          <CardGoal />
+          {/* WAJIB: Kirim data goals agar grafik lingkaran muncul */}
+          <CardGoal data={goals} />
         </div>
         <div className="sm:col-span-4">
-          <CardUpcomingBill />
+          <CardUpcomingBill data={bills} />
         </div>
 
-        {/* Baris Tengah & Bawah */}
+        {/* --- BARIS TENGAH & BAWAH --- */}
         <div className="sm:col-span-4 sm:row-span-2">
-          <CardRecentTransaction />
+          <CardRecentTransaction data={transactions} />
         </div>
         <div className="sm:col-span-8">
-          <CardStatistic />
+          {/* WAJIB: Kirim data agar grafik batang (Bar Chart) muncul */}
+          <CardStatistic data={expensesStatistics} />
         </div>
         <div className="sm:col-span-8">
-          <CardExpenseBreakdown />
+          <CardExpenseBreakdown data={expensesBreakdowns} />
         </div>
       </div>
     </MainLayout>

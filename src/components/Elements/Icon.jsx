@@ -1,6 +1,6 @@
 import React from "react";
 
-// 1. Import Ikon sesuai file di folder assets/icons [cite: 623, 635, 769, 803-810, 854-869]
+// 1. Import Ikon Utama & Sidebar [cite: 384-393]
 import OverviewSVG from "../../assets/icons/Overview.svg?react";
 import TransactionSVG from "../../assets/icons/Transaction.svg?react";
 import BalanceSVG from "../../assets/icons/wallet.svg?react";
@@ -11,6 +11,8 @@ import SettingSVG from "../../assets/icons/Settings.svg?react";
 import DetailSVG from "../../assets/icons/Icon.svg?react";
 import ChevronRightSVG from "../../assets/icons/chevrons-right.svg?react";
 import LogoutSVG from "../../assets/icons/Icon2.svg?react";
+
+// 2. Import Ikon Brand & Kategori [cite: 394-397, 400]
 import AdobeSVG from "../../assets/icons/Adobe.svg?react";
 import FigmaSVG from "../../assets/icons/Figma.svg?react";
 import FoodSVG from "../../assets/icons/Food.svg?react";
@@ -20,17 +22,26 @@ import MovieSVG from "../../assets/icons/Movie.svg?react";
 import OtherSVG from "../../assets/icons/Others.svg?react";
 import ShoppingSVG from "../../assets/icons/Shopping.svg?react";
 import TransportSVG from "../../assets/icons/Trasnport.svg?react";
+
+// 3. Import Ikon Navigasi & Aksi [cite: 400-403]
 import ArrowRightSVG from "../../assets/icons/arrow-right.svg?react";
 import ArrowDownSVG from "../../assets/icons/Downarrow.svg?react";
 import ArrowUpSVG from "../../assets/icons/Uparrow.svg?react";
+import ArrowUpRightSVG from "../../assets/icons/arrow-up-right.svg?react";
+import EditSVG from "../../assets/icons/edit.svg?react";
+import MastercardSVG from "../../assets/icons/Mastercard-Logo.svg?react";
+import VisaSVG from "../../assets/icons/Visa_Logo.svg?react";
+import TargetSVG from "../../assets/icons/target.svg?react";
+import AwardSVG from "../../assets/icons/Award.svg?react";
 
-// 2. Helper function untuk membuat komponen ikon [cite: 625, 636, 672-674, 815]
+// Helper function untuk membuat komponen ikon [cite: 404-407]
 const createIcon = (SVG) => ({ size = 24, color = "currentColor", ...props }) => (
   <SVG width={size} height={size} stroke={color} {...props} />
 );
 
-// 3. Objek Icon untuk diekspor [cite: 624, 641, 811, 846, 887]
+// Objek Icon untuk diekspor [cite: 408-429]
 const Icon = {
+  // Menu Sidebar
   Overview: createIcon(OverviewSVG),
   Transaction: createIcon(TransactionSVG),
   Balance: createIcon(BalanceSVG),
@@ -41,6 +52,8 @@ const Icon = {
   Detail: createIcon(DetailSVG),
   ChevronRight: createIcon(ChevronRightSVG),
   Logout: createIcon(LogoutSVG),
+
+  // Brand & Kategori
   Adobe: createIcon(AdobeSVG),
   Figma: createIcon(FigmaSVG),
   Food: createIcon(FoodSVG),
@@ -50,15 +63,17 @@ const Icon = {
   Other: createIcon(OtherSVG),
   Shopping: createIcon(ShoppingSVG),
   Transport: createIcon(TransportSVG),
+
+  // Navigasi, Aksi, & Kartu (PENTING untuk Balances & Goals)
   ArrowRight: createIcon(ArrowRightSVG),
   ArrowDown: createIcon(ArrowDownSVG),
   ArrowUp: createIcon(ArrowUpSVG),
-
-  // Fallback agar CardBalance dan CardGoal tidak error jika mencari key ini [cite: 209, 212]
-  Mastercard: createIcon(BalanceSVG),
-  Visa: createIcon(BalanceSVG),
-  Edit: createIcon(DetailSVG),
-  Award: createIcon(GoalSVG),
+  ArrowUpRight: createIcon(ArrowUpRightSVG),
+  Edit: createIcon(EditSVG),
+  Mastercard: createIcon(MastercardSVG),
+  Visa: createIcon(VisaSVG),
+  Target: createIcon(TargetSVG),
+  Award: createIcon(AwardSVG),
 };
 
 export default Icon;

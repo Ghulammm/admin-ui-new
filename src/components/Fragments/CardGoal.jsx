@@ -2,8 +2,13 @@ import React from "react";
 import Card from "../Elements/Card";
 import { goals } from "../../data";
 import Icon from "../Elements/Icon";
+// Import MUI Components
+import { CircularProgress, Box, Typography } from "@mui/material";
 
 const CardGoal = () => {
+  // Hitung persentase: (12500 / 20000) * 100 = 62.5%
+  const chartValue = (goals.presentAmount / goals.targetAmount) * 100;
+
   return (
     <Card
       title="Goals"
@@ -11,31 +16,41 @@ const CardGoal = () => {
         <div className="p-2">
           <div className="flex justify-between items-center mb-4">
             <div className="flex items-center gap-2">
-              <p className="text-2xl font-bold">${goals.presentAmount.toLocaleString()}</p>
-              <div className="p-1 bg-gray-100 rounded">
-                <Icon.Edit size={16} color="gray" />
+              <p className="text-2xl font-bold">${goals.targetAmount.toLocaleString()}</p>
+              <div className="p-1 bg-gray-100 rounded cursor-pointer">
+                <Icon.Edit size={16} />
               </div>
             </div>
             <p className="text-gray-400 text-sm">May, 2023</p>
           </div>
           
-          <div className="space-y-2">
-            <div className="flex justify-between text-xs text-gray-500">
-              <span>Target Value</span>
-              <span className="font-bold text-gray-800">${goals.targetAmount.toLocaleString()}</span>
+          {/* Grafik Lingkaran (Sesuai Desain Finebank) */}
+          <div className="flex flex-col items-center justify-center mt-6">
+            <Box sx={{ position: 'relative', display: 'inline-flex' }}>
+              <CircularProgress 
+                variant="determinate" 
+                value={chartValue} 
+                size={120} 
+                thickness={5}
+                sx={{ color: "#299D91" }} // Warna primer hijau
+              />
+              <Box sx={{ top: 0, left: 0, bottom: 0, right: 0, position: 'absolute', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <Typography variant="caption" component="div" className="font-bold text-xl text-black">
+                  {`${Math.round(chartValue)}%`}
+                </Typography>
+              </Box>
+            </Box>
+            
+            <div className="flex justify-between w-full mt-6 text-xs">
+               <div className="text-gray-400 text-center">
+                 <p>Target Value</p>
+                 <p className="text-black font-bold">${goals.targetAmount.toLocaleString()}</p>
+               </div>
+               <div className="text-gray-400 text-center">
+                 <p>Achievement</p>
+                 <p className="text-black font-bold">${goals.presentAmount.toLocaleString()}</p>
+               </div>
             </div>
-            {/* Progress Bar sederhana */}
-            <div className="w-full bg-gray-100 rounded-full h-2">
-              <div 
-                className="bg-primary h-2 rounded-full" 
-                style={{ width: `${(goals.presentAmount / goals.targetAmount) * 100}%` }}
-              ></div>
-            </div>
-          </div>
-          
-          <div className="mt-6 flex items-center gap-4">
-             <Icon.Award size={32} className="text-primary" />
-             <p className="text-xs text-gray-500">You have saved {((goals.presentAmount / goals.targetAmount) * 100).toFixed(0)}% of your goal!</p>
           </div>
         </div>
       }
