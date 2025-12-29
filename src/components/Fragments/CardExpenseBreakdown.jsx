@@ -1,15 +1,15 @@
 import React from "react";
 import Card from "../Elements/Card";
-import { expensesBreakdowns } from "../../data";
-import Icon from "../Elements/Icon";
 
-const CardExpenseBreakdown = () => {
+const CardExpenseBreakdown = (props) => {
+  const { data } = props;
+
   return (
     <Card
       title="Expenses Breakdown"
       desc={
         <div className="grid grid-cols-2 gap-4">
-          {expensesBreakdowns.map((item) => (
+          {data.map((item) => (
             <div key={item.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-xl">
               <div className="flex items-center gap-3">
                 <div className="bg-white p-2 rounded-lg shadow-sm">

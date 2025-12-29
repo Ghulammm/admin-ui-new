@@ -1,14 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Card from "../Elements/Card";
-import { transactions } from "../../data"; // Import data statis
+// Import ThemeContext untuk mengambil kode warna hex secara langsung
+import { ThemeContext } from "../../context/themeContext";
 
-const CardRecentTransaction = () => {
-  const [type, setType] = useState("All"); // Inisialisasi State [cite: 1]
+const CardRecentTransaction = (props) => {
+  const { data } = props;
+  const [type, setType] = useState("All");
 
-  // Logika Filter Data
+  // Mengambil state global theme dari context
+  const { theme } = useContext(ThemeContext);
+
   const filteredTransactions = type === "All" 
-    ? transactions 
-    : transactions.filter((transaction) => transaction.type === type);
+    ? data 
+    : data.filter((transaction) => transaction.type === type);
 
   return (
     <Card
@@ -22,8 +26,16 @@ const CardRecentTransaction = () => {
               <button
                 key={item}
                 onClick={() => setType(item)}
+                // Gunakan style inline untuk warna teks dan border bawah saat aktif
+                style={
+                  type === item 
+                    ? { color: theme.color, borderBottomColor: theme.color } 
+                    : {}
+                }
                 className={`pb-2 text-sm transition-all ${
-                  type === item ? "text-primary border-b-2 border-primary font-bold" : "text-gray-400"
+                  type === item 
+                    ? "border-b-2 font-bold" 
+                    : "text-gray-400"
                 }`}
               >
                 {item}

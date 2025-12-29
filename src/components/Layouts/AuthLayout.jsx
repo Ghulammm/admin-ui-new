@@ -1,25 +1,27 @@
-import React from "react";
-import Logo from "../Elements/Logo";
+import React, { useContext } from "react";
+import LogoDashboard from "../Elements/LogoDashboard";
+import { ThemeContext } from "../../context/themeContext";
+
+// src/components/Layouts/AuthLayout.jsx
 
 const AuthLayout = (props) => {
-  const { children, title } = props; // Props 'type' sudah tidak dibutuhkan di sini
+  const { children, title } = props;
+  const { theme } = useContext(ThemeContext);
+
   return (
-    <div className="flex justify-center min-h-screen items-center font-poppins">
-      <div className="w-full max-w-xs">
-        {/* Logo */}
-        <div className="flex justify-center mb-6">
-            <Logo />
+    <main className={`min-h-screen bg-special-mainBg flex justify-center items-center ${theme.name} font-poppins`}>
+      {/* PERBAIKAN: Hapus 'shadow-sm' 
+          Gunakan 'border border-gray-200' untuk tampilan flat yang tetap rapi 
+      */}
+      <div className="w-full max-w-sm  p-8 rounded-2xl">
+        <div className="flex justify-center mb-10">
+          <LogoDashboard variant="primary" />
         </div>
-        
-        {/* Judul Halaman */}
-        <h1 className="text-2xl font-bold mb-8 text-center text-slate-900">{title}</h1>
-        
-        {/* Form akan dirender di sini (sudah termasuk link footer di dalamnya) */}
+        <h1 className="text-3xl font-bold mb-2 text-center text-slate-900">{title}</h1>
+        <p className="text-sm text-gray-500 text-center mb-8">Welcome back! Please enter your details.</p>
         {children}
-        
       </div>
-    </div>
+    </main>
   );
 };
-
 export default AuthLayout;

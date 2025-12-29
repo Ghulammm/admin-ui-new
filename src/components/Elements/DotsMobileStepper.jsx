@@ -4,14 +4,23 @@ import MobileStepper from "@mui/material/MobileStepper";
 import Button from "@mui/material/Button";
 import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
+import { ThemeContext } from "../../context/themeContext";
 
 export default function DotsMobileStepper(props) {
   const { data } = props;
   const theme = useTheme();
   const [activeStep, setActiveStep] = React.useState(0);
 
-  const handleNext = () => setActiveStep((prev) => prev + 1);
-  const handleBack = () => setActiveStep((prev) => prev - 1);
+  // Mengambil state global theme dan aliaskan menjadi themeMode
+  const { theme: themeMode } = React.useContext(ThemeContext);
+
+  const handleNext = () => {
+    setActiveStep((prevActiveStep) => prevActiveStep + 1);
+  };
+
+  const handleBack = () => {
+    setActiveStep((prevActiveStep) => prevActiveStep - 1);
+  };
 
   return (
     <>
@@ -25,16 +34,36 @@ export default function DotsMobileStepper(props) {
           maxWidth: "400",
           flexGrow: 1,
           "& .MuiMobileStepper-dot": { backgroundColor: "darkgray" },
-          "& .MuiMobileStepper-dotActive": { backgroundColor: "#299D91" },
+          "& .MuiMobileStepper-dotActive": { backgroundColor: themeMode.color },
         }}
         nextButton={
-          <Button size="small" onClick={handleNext} disabled={activeStep === data.length - 1} sx={{ color: "black" }}>
-            Next {theme.direction === "rtl" ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
+          <Button
+            size="small"
+            onClick={handleNext}
+            disabled={activeStep === data.length - 1}
+            sx={{ color: "black" }}
+          >
+            Next
+            {theme.direction === "rtl" ? (
+              <KeyboardArrowLeft />
+            ) : (
+              <KeyboardArrowRight />
+            )}
           </Button>
         }
         backButton={
-          <Button size="small" onClick={handleBack} disabled={activeStep === 0} sx={{ color: "black" }}>
-            {theme.direction === "rtl" ? <KeyboardArrowRight /> : <KeyboardArrowLeft />} Back
+          <Button
+            size="small"
+            onClick={handleBack}
+            disabled={activeStep === 0}
+            sx={{ color: "black" }}
+          >
+            {theme.direction === "rtl" ? (
+              <KeyboardArrowRight />
+            ) : (
+              <KeyboardArrowLeft />
+            )}
+            Back
           </Button>
         }
       />
